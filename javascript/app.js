@@ -46,7 +46,7 @@
         $(".gif-view").empty();
 
         var movieSelect = $(this).attr("data-name");
-        var giphyUrl = "http://api.giphy.com/v1/gifs/search?api_key=3562a99d04ea4cc4a7c4cde52fa66a4e&limit=10&q=" + movieSelect;
+        var giphyUrl = "https://api.giphy.com/v1/gifs/search?api_key=3562a99d04ea4cc4a7c4cde52fa66a4e&limit=10&q=" + movieSelect;
 
         $.ajax({
           url: giphyUrl,
@@ -62,19 +62,26 @@
           
 
           // Creating and storing an image tag
-          var gifImage = $("<img>");
+          var gifImage = $("<div>");
+          var imgCreate = $("<img>");
+          
+          // Setting up attributes and ids.
 
-          // Setting the catImage src attribute to imageUrl
-          gifImage.attr("src", gifAnimate);
-          gifImage.attr("alt", "gif image");
-          gifImage.attr("gif-state", "animate");
-          gifImage.attr("class", "gif");
-          gifImage.attr("gif-still", gifStill);
-          gifImage.attr("gif-animate", gifAnimate);
+          gifImage.attr("class", "gifDiv")
 
+          imgCreate.attr("src", gifAnimate);
+          imgCreate.attr("alt", "gif image");
+          imgCreate.attr("gif-state", "animate");
+          imgCreate.attr("class", "gif");
+          imgCreate.attr("gif-still", gifStill);
+          imgCreate.attr("gif-animate", gifAnimate);
 
-        
-          $(".gif-view").append(gifImage, "Rating: ", gifRating);
+          
+          gifImage.append(imgCreate);
+
+          gifImage.append("<h2>Rating: " + gifRating.toUpperCase());
+
+          $(".gif-view").append(gifImage);
 
 
           }
